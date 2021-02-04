@@ -1,0 +1,67 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SoundManager : MonoBehaviour {
+
+    // T4 we can only have one soundManager, 
+    // all sounds will be here in the soundManager Main class
+    public static SoundManager Instance = null;
+
+    // T4 the user can store their audio sound clips here, 
+    // All sound effects in the game
+    // All are public so you can set them in the Inspector
+    public AudioClip alienBuzz1;
+    public AudioClip alienBuzz2;
+    public AudioClip alienDies;
+    public AudioClip bulletFire;
+    public AudioClip shipExplosion;
+
+    // T4 get a reference to the audiosource to play the audio files
+    // Refers to the audio source added to the SoundManager
+    // to play sound effects, private, since the user will not change them
+    private AudioSource soundEffectAudio;
+
+    // T4 Use this for initialization the instance of the soundManager
+    // if there isn't an instance of soundmanager create one
+    void Start () {
+
+        // T4 This is a singleton that makes sure you only
+        // ever have one Sound Manager
+        // If there is any other Sound Manager created destroy it
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        // T4 if not equal to null then destroy the Instance object
+        else if( Instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        // T4 define our audio source, by getting the component assigned to it
+        // and assign theSource to soundEffectAudio
+        AudioSource theSource = GetComponent<AudioSource>();
+        soundEffectAudio = theSource;
+	}
+
+    /* T4 we do not need - Update is called once per frame
+	void Update () {
+	
+	} */
+
+    // T4 any Other GameObjects can call this function to play sounds
+    // receives and AudioClip
+    public void PlayOneShot(AudioClip clip)
+    {
+        soundEffectAudio.PlayOneShot(clip);
+    }
+
+}
+
+// to build our SoundManager go into the Unity Hierarchy, Create, Create Empty.
+// (Game Object) rename to SoundManager, then select it and add Component, and
+// choose Audio, Audio Source, 
+// then drag our SoundManager script, and drag it into the the add component space.
+// Then drag the cooresponding sound files in sounds, into thier cooresponding places
+// in SoundManager.

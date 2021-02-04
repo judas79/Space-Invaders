@@ -1,0 +1,142 @@
+﻿This time we’ll make Space Invaders and learn a ton about making complex games. I’ll cover How to Draw Pixel Art with Gimp, Sprite Sheets, 
+SoundManager, Camera, Animating Bullets, User Interfaces, Prfabs, Collisions, Ignoring Collisions, Sound Effects, Making Objects Appear, 
+OnTriggerEnter, SpriteRenderer, Changing Sprites, Destroying Objects, AI Players, Randomizing AI Actions, StartCoroutine, Yield, 
+Animated Explosions and numerous tips that will help you avoid mistakes. The Images and Sounds used are here: 
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbGNjSEs2Z0JqLWZRUVJRR3dBOXgzZkt5a05MZ3xBQ3Jtc0tsamFkT0FQSl95T244RkpfM1FySUFETy00Tm05czN6cTd6cEptQzYtVkRwZjdrbEo5VHJkeTRRT2lqblVGdlAyNTdFMGxuNkZJbEgyLXpCNWQtbmVvSDRVUnhnaDJVUW9rWm96bWdYNjc0eUk1MS1nNA&q=https%3A%2F%2Fgoo.gl%2F95aWqr
+This will be a 4 part tutorial. I hope you enjoy it.
+
+Visual Studio 2017, and more; You can also select to install Unity, in this VS installer:
+https://visualstudio.microsoft.com/vs/older-downloads/
+
+You will need a Paint, Image program;  get Gimp here:
+https://www.gimp.org/downloads/
+
+You may need a Diff/Merge program app, to link Unity to your Visual Studio editor.  Get SourceGear Dif/Merge here:
+https://sourcegear.com/diffmerge/downloads.php
+
+
+First, we will set up Gimp, to make an example Alien.  You will have to make your own, bullet, spaceship, walls and other aliens, on your own or,
+Download them from the first link, above.  The same goes for all the sounds, that are also included in the download.
+When you first install Gimp, go to the Windows tab, the click Single-Window mode, to make Gimps' parts, be in one Window.  Next, to start making the
+Alien, click New, then set your width to 160 pixels and heigth to 20 pixels, then cick ok.  Clicking z will allow you to zoom in to your newly created
+empty box.  We will be using shortcuts, to select the tools needed to create our Alien.  The first is:
+Free Select    'f'
+pencil         'n'
+eraser         'E'
+color picker   'o'
+
+Next we will set up layers, to have a tranparent background, for out alien.  Click Layer, Tranparency, add alfaChannel. Then on the top right of out Layers
+area, click on the <<, choose New layer. At the bottom of the popup select the Transparency bullet; the ok.  Now in the window, on the right middle of the screen
+use 'delete layer', to deler the 'Background' layer.  You should now have a transparen rectangle to work with.  
+Next highlight yur pencil, to set it up.  In its configuration box, set the size to 1, click on the brush area and choose the single pixel, which is the first option,
+it looks like a small dot.  Then click dynamics and choose dynamics off, and opacity 100%. 
+Next highligh eraser.  Pixel = 1, opaciry 100%, and choose hard edge.
+Next is our free select tool (lasso).  Make sure antialiasing and feather edges are un-checked.
+
+Next we will set up our background.  Got to View tab and choose Show Grid.  Then image tab and choose configure grid.  
+In popup set width and height to 1 pixel and line style set to intersections (dots); click ok. 
+Next click edit, preferences.  Click diplay in popup and set to dark checks, check size = large, then ok.
+
+On the screen where you rectangle is; drag a line from the left, ruler side, while using your horizontal grid over to 0.  Then continue deviding up the grid, vertically
+by 16 (pixels), until you reach the right end of your rectangle.  Drag a line from your top ruler to divide your grid rectangle in half, horizontaly, which is 10 pixels 
+on the ruler.
+
+Now click your pencil tool and draw yur first alien, in one of the many grid boxes you made.  Make sure you center your drawing in the grid box, you are drawing it in.  
+First choose a light blue color for your pencil, from color picker.  Also, ty to center the alien and start 1 pixel down from the top, as to not start on the first line.
+     __
+   ______
+  ________
+  __ __ __
+   ___ ___
+   _  _  _
+  _       _
+
+Make a bunch more including your space ship, and save them as a png file, by exporting it as one.
+
+Next, open Unity to create our game.  Project Name Space Invaders, check 2d, then click create game.  You can make a folder, or select the folder, you want to use, to store your
+project.  
+First we will select our camera, the change the background color to black.
+Change size to 40, which is actually half the viewing windo area size, making it (80).
+Next in the Assets area we will create the folders we will need.  Righ click Assets, choose create, folder, to make our folders:
+Prefab
+Scene
+Sounds
+Sprites
+Scripts
+
+Next, go up to File and click save scene.  In the popup window, name it MainScene then click on the Scenes folder, the press the save button at the bottom of our popup.  
+If you click on the scenes folder, you should now have MainScene inside it.
+
+Next decompress the file you downloaded, with all the animations graphics and sound for the game.
+Drag all your png files to the sprites folder and all you sound files to the sounds folder.
+If you made your own animations and sounds, drag them to the cressponding folders instead of the pre made ones.
+
+Next we will split up all the images in the spaceInvadersSprites.  Highlight the spaceInvaderSprites then go over to its ssettings box
+and click where it says sprite mode and choose multiple, then click apply. Next click the sprite editor.
+Your sprites should popup in the editor.  Click on Slice, then choose grid by cell size.
+In Pixel Size set x to 16 and y to 10, then click slice.  Then click the apply popup.
+Next, highlight your spaceInvadersSprites again, then set pixels perunit to 1, and in filter mode, chose point(no filter), to make them clearer.
+Do the same thing for the bullet, horizwall and vertwall.
+
+Next, we wil drag our horizwall into the scene area.  Adjust the scene area so you can see the outline of the box, of the camera.
+Move the horizbox toward the top, but inside of the camera box and centered.  Drag in another horizwall and do the same, but at the bottom.
+Next drag in the vertwall and put it on the left and yet another on the right.  Move them around until you get everything lined up as a proper rectangle.
+The walls will act as the collion points for the bullets.
+In your scenes box, rename the top horizwall to TopWall, bottom horizwall to BottomWall, vertwall left to LeftWall and vertwall on right to RightWall.  Take heed of the spelling.
+Next select all the walls, in scene, then in setting click Add Component, then physics2d, box collider2d.  That will put box collider on all of them to handle colisions.
+
+Next in your Assets box select the scripts folder and right click it, choose Create, then C# Script and name it Alien.
+Then do the same, and create one named AlienBullet, 
+another named Bullet, 
+and another named SpaceShip,
+and another named SoundManager.
+
+Now, we will set up some things for our SpaceShip.  Click on the sprites folder and highlight SpaceInvaderSprites_8, which is the pink space ship. Drag SpaceInvaderSprites_8
+into our scene window, and place it at the inside bottom left corner, almost touching the bottom wall and left wall. Next we will resize it to half, in the inspector window.
+Change the size form 1 to .5, for the Scale x and scale y.  Re-orient the spaceship as we defined earlier, since it changed size.
+Rename our SpaceInvaderSprites_8 in Scenes, to SpaceShip.
+
+We give objects, layer names to hel simplify, how they react to collisions or lack of them, to bullets walls ect.  Select out SpaceShip, in Scenes, then go over to the Inspector
+and click the Tags dropdown and choose Player, as its tag name.  
+Next in the Layers dropdown, choose Add Layer...
+In the User Layer 8 we will name this layer SpaceShip.
+
+Next, select the SpaceShip from scenes again, and click add component, the physics 2d and choose rigidBody 2d.
+In the RigidBody 2D box, change the Mass to .0001, so the spaceship has vertually no mass, and will not cause reactions with other objects.
+Gravity Scale = 0,
+Collision Detection = Continuous,
+Interpolate = interpolat (which is very smooth).
+
+Next, click Assets, Scripts then drag the SpaceShip into the window, under the add component button.
+Then click add component, physics 2d, then clic box colider 2d, for collisions as well as bullets hits.
+In the box colider 2d box, put a check at 'is trigger'.  This will call a specific method for triggering events.
+Also go into the RigidBody 2d box and click Constraints and put a check by freeze rotation Z.
+
+Next, double click the SpaceShip script in the script folder.  This should launch Visual Studio automatically if it is set up properly
+The 'Visual Studio 2017 Tools.unitypackage' tool package, comes bundled with VS, if you install VS and Unity.
+If not, go to:  
+C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\15.0\Visual Studio 2017 Tools.unitypackage
+Double click: Visual Studio 2017 Tools.unitypackage
+to install the prerequeisites, for it to work, then in Unity,Edit, click Preferences then select External tools, then in the External Script Editor click to browse to:
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\devenv.exe
+select devenv.exe by clicking it.
+If you see missing a dif/merge message in the external tools window, got to the link at the top of this document, download and install sourcegear diff/merge,
+install and restart your computer, if need be.
+Double click you SpaceShip script, and VS editor should launch.
+
+The notes for the code for the SpaceShip script are commented inside the SpaceShip script itself.  So the lesson continues there.
+The file is named SpaceShip.cs and a copy of it is in the tutorial 4 folder.
+
+Next we will also double click on our SoundManager Script to open it in VS.  All the coding notes are commented there, for soundManager.
+
+When we return from all the C# coding for the spacship and soundmanger...
+
+To build our SoundManager, go into the Unity Hierarchy, Create, Create Empty.
+(Game Object) rename to SoundManager, then select it and then add Component, and
+choose Audio, Audio Source, 
+then drag our SoundManager script into the the space below, the add component button.
+Then drag the cooresponding sound files in sounds, into thier cooresponding places in SoundManager.
+
+Next, in the scenes window, select all our walls, go to tags, and click add tag, and then name it Wall.
+Then go back to tags and select Wall, the go over to the Layers and click add Layer, then in user layer 9, name it Wall.
+To verify, select all the walls, click tag select Wall the go over to layers and select Wall.
