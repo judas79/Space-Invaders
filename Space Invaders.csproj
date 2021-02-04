@@ -73,10 +73,12 @@
     <Compile Include="Assets\Scripts\SpaceShip.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="How to Make Video Games 4\SpaceInvaderAssets.zip" />
+    <Content Include="How to Make Video Games 4\SoundManager.cs.txt" />
+    <Content Include="How to Make Video Games 4\Tutorial 4 Lesson 1 notes.txt" />
+    <Content Include="How to Make Video Games 4\SpaceShip.cs.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="How to Make Video Games 4\Tutorial 4 Lesson 1 notes.txt" />
+    <None Include="How to Make Video Games 4\SpaceInvaderAssets.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
