@@ -36,7 +36,13 @@ public class SpaceShip : MonoBehaviour {
         // Jump is represented by the spacebar
         if(Input.GetButtonDown("Jump"))
         {
-            // Fire a bullet, with the cooresponding sound
+            // T4 Fire a bullet, with the cooresponding sound
+            // create the bullet at the position of our spaceship
+
+            // T5 Instantiate (Create the Bullet) at transform.position which
+            // is the ships current location
+            // Quaternion.identity adds Bullet with no rotation
+            Instantiate(theBullet, transform.position, Quaternion.identity);
 
         }
 	}

@@ -1,0 +1,189 @@
+﻿Welcome to the 2nd video on how to make Space Invaders. If you missed the first Space Invaders Video definitely watch it first. 
+Otherwise you may be confused.
+In this video we’ll cover User Interfaces, Tags, Layers, Ignoring Collisions, Prefabs, and we’ll start making the Bullet and Alien C# Scripts. 
+Like always all of the code follows the video below. Get Images and Sounds Here:
+http://www.newthinktank.com/wordpress/SpaceInvaderAssets.zip
+
+First, highlight your SpaceShip and in its box collider 2, make sure is trigger is unchecked.
+
+Next we will create Canvas to put our UI elements in.  In our Hierarch, Create, UI, and select text.  Change the text name to Score.
+Select the Score text in hierachy box, and go over to the Text Script box and change the text to 0.
+In Character, Font Style = bold.
+Font Size = 23
+Press the center align button, to center the Alignment.
+
+Next in heirarchy, select Canvas.  In the inspector:
+Change the render mode = world space; it means canvas and UI elements will be on the same level as our game
+In rect transform change;
+Scale x, y both = .13
+
+Next, drag our main camera, from the heirarchy and place it in the Canvas, Event Camera, box.
+In the Canvas Scaler Script section, change Dynamic Pixels Per Unit = 10.
+
+Next, zoom way out, so you can see the outline of the canvas rectangle, in the scene window.  Drag the canvas rectangle so that it overlaps our main camera rectangle.
+Next highlight Score.  You should see it in our Scene window.  If not zoom out some more, until you see it, and drag it to the top center of the scene screen,
+then align it, so it just touches the above the top wall of our playing field, rectangle.
+While our score, is still selected, go over to our Color setting and click inside the space, as to choose a color, from the color picker, and choose or create white,
+by sliding all RGB sliders to thr right.
+The score number, '0' should be centered above the midpoint of our top wall.
+
+Next we will set up bullets and write code for that.  To create a bullet prefab, first make sure it is set to 1 and filter point = point, in the Pixels per unit, 
+then we will drag our bullet, from within the sprite folder, to our Main Scene list.  
+Highlight bullet in the Scene list, and Scale the size of the bullet to Sacale = .5 for both x and y.
+Next highlight bullet, in scenes list, click the add component button, then physics 2d, then choose rigidbody 2d.
+In the bullet rigidbody settings set:
+Gravity scale = 0
+Mass = .0001
+collision detection = continious
+interpolate =  interpolate to smooth
+constraints freeze rotation, put a check by z
+Body type = Kinematic, or a checkmark next to 'is kinematic'
+
+We don't want our bullets floating around the screen, we want them just to apear and then disapear after use.  To do this we will make these prefab.
+Highlight the bullet in our scenes list, then drag it to our prfabs folder.
+Then delete bullet from the scene list.
+
+Next we will double click our bullet script, in our script folder, and continue the tutorial, and all the notes, in the form of comments, in that 
+Bullet.cs document.  As before double clicking the bullet script will launch the VS editor, and we will work in there....
+
+After working on bullets.cs we will move back to our SpaceShip.cs, to work on it.
+Click save all in VS.  Then go back to the Unity editor.
+
+Go into the prefab folder and select Bullet and add component, physics 2d, box collieder.
+Check 'is trigger' in box collider settings. 
+
+Next create a tag for the prefab, Bullet.  Click Tag, add tag, the + sign, and name the tag Bullet.
+Next we will create another layer.  In the Tags and layers box, Click dropdown next to layers, user layer 10 = Bullet.
+We don't want Bullets appearing inside of our SpaceShip, do we will fix that from happening in our Unity menu.
+Got to Edit, Project Sttings, the click on Physics 2d.  An Array of names of our items, with check marks, will appear named Physic@DSettings.
+Towards the bottom left, where bullet column, intersects with the SpaceShip row, uncheck the check, so that they don't colide with eachother.
+
+Next we will check if our items, in the Scenes box, all have tag and layer names, by clicking them and seeing what pops up in our inspector.
+SpaceShip has Player tag, but needs to be selected in the layer named SpaceShip, in the list.  So do that.
+Check all four Walls, one at a time; tag should = Wall and layer should = Wall, for each of them.
+Next check if your Bullet, in the prfab folder has a tag and name, and if not select Bullet from each list, for the tag and layer names.
+So, now all our taggs and layers are set up.
+
+Next we will try out our game, as is so far....
+OOps, It doesn't fire bullets yet, because we didn't assign them.
+In our scene list, click spaceshipt then go into the Space Ship (Scrypts) box.  We need to drag a Bullet from the prefab folder, into the 
+'The Bullets' field in the Space Ship (scene) area settings.
+
+Try you game again;  mine didn't shoot anything... The one in the tutorial shot a bullet but they don't travel, just a white do on the screen.
+To resolve this, highlight bullet in the prefabs folder, go into the script folder and drag the bullet script into the space below the add componet button.
+
+Next we will set up all the Aliens.  We have 5 of eache Alien color, and an alternative shape, for each one, 
+to simulate movement of the legs, while moving across the canvas (computer screen).  
+First drag all the Aliens and thier alternatives, from the sprites folder to the Scene list.  Do not drag the the pink spaceShip, or the yellow UFO over yet.
+Next, we will rename the Aliens in our Scene list.  We will name the aliens in pairs, determined by there matching color.  We will start by naming the first one,
+on the top left side of the screen.
+Alien2
+Alien2Alt
+Alien3
+Alien3Alt
+Alien4
+Alien4Alt
+Alien5
+Alien5Alt
+
+We will then name the yellow explosion sprite, to:
+AlienExplosion
+and the red explosion to:
+SpaceShipExplosion
+
+Next select all the sprites, in our Scene window, and change the size, for all of them to: 
+Scale x, and y = 0.5
+
+Next drag all of the sprites, including the explosions, but not our pink spaceShip, to the Prefab folder.
+Then delete all of thos sprites from the Main Scene window.
+Save Scene.
+
+Next, to group our aliens into the same area.
+Click on create in our Main Scene window, and choose 'Create Empty'.
+Rename to Aliens. (plural)
+Select Aliens, so we can create some tags and layers for them.
+Choose tab, add tagss, the + sign and name it Alien.
+Expand the Layers area, add to: user layer 11 = Alien
+
+Next, we will drag our Alien 1 - 4 sprites, from our Prefab folder into the Aliens container, we just created.
+Do not include the alt aliens or explosions, leave them in the prefab folder, we will deal with the alt aliens, in code.
+Next go to the Scene window, and align the Aliens, one at a time, into a straight column, starting at the top left, of our Wall box, 
+almost touching the topwall and left side Wall.
+Next select the group of 4 aliens, in the scene window, and choose the 'Alien' name, from the dropdowns of the Tab and Layers, area.
+Next, while the four aliens, are still selected, go to edit, project setting, physics 2d.  In the layer collision Matrix bo that popsup,
+uncheck where the column, Alien, and row Alien, intersect.  This will cause the alien individuals, to ignore eachother, when they collide.
+Next select those four aliens again and right click on them and choose, duplicate.
+In the mainScene window, arrange the duplicates, so starting after Alien5 they are in this order:
+Alien5  then
+Alien2 (1)
+Alien3 (1)
+Alien4 (1)
+Alien5 (1)
+
+Next, select the group of duplicates, and drag them from being right superimposed ON TOP of the original Alien2 - Alien5 Aliens, in the Scene window, 
+then align them next to the original 4 aliens, as a column, next to them, on thier right side.
+This is the alignment.
+@ @
+# #
+$ $
+% %
+
+Next we will select the new four duplicates, we just made, and right click and duplicate them.
+Then check that they are in numerical order, and rearange them if not, then drag them over, off the 2nd column aliens, as you did with the first batch.
+Then duplicate that 3rd batch of aliens, and do the same thing.
+You should now a 4 rows and 5 columns of aliens, arranged like this.
+@ @ @ @ @
+# # # # #
+$ $ $ $ $
+% % % % %
+
+Next, select all the aliens and add component, physics 2d, rigidbody 2d
+rigidbody 2d settings for Aliens:
+Mass = .0001
+Gravity Scale = 0
+Freeze rotation Z = Checked
+Collision Dtection = Continous
+Interpolate = Interpolate
+
+Next, add a rigidbody 2d to your prefab Aliens, so we can fire this.
+rigidbody d2 settings:
+Freeze Rotation Z = checked
+kinematic = checked
+interpolitation = interpolitation
+collision detection = continous
+
+Next, add component, physics 2d, box collider 2d for the selected Aliens.
+Leave settings as is.
+
+Next leave all aliens selected and drag the Alien script in scripts folder,
+to the space under the add comonents area under the aliens settings.
+Check the settings, for the Aliens to verify they are all the same, one at a time,
+except the positions, which will change.
+
+Next, go into the sprites folder and drag Square, into the main scenes list.
+Rename it to AlienBullet.Then, drag it over into the Prefab folder.
+Then delete the AlienBullet from the heirarchy main script area.
+
+Click on scripts and drag the AlienBullet script into the empty space at the bottom of the AlienBullet settings area.
+Next add a rigidbody 2d, to the AliensBullet, in our Prefab folder, alienbullet settings.
+Settings for RigidBody:
+Kinematic = checked
+Freeze rotation z = checked
+collision detection = Continous
+interpolate = interpoate
+
+Next, add a box collider 2d to your prefab AlienBullet
+box collider 2d settings:
+is Triggered = checked
+
+Double check your alien explosion and spacehip explosion to verify the setting are the same, as you aliens.
+
+Drag another square, from your sprites into the main scene list.
+Rename it to: Shield
+highlight Shield and change color to neon-green
+Drag the shield into Prefab
+Delete shield from main scene list
+
+Mostly set up, next tutorial will have lots of coding.
+
+

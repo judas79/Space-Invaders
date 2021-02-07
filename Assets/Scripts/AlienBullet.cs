@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AlienBullets : MonoBehaviour {
+public class AlienBullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
