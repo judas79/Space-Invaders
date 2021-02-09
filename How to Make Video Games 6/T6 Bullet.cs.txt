@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 // T5 Needed to manipulate the UI
 using UnityEngine.UI;

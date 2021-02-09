@@ -1,0 +1,89 @@
+Welcome to the next to last part of my How to Make Space Invaders tutorial! In this part I’ll cover Sound Effects, Bullets, Making Objects Appear, 
+OnTriggerEnter, SoundManager, Changing Scores, SpriteRenderer, Changing Sprites, Destroying Objects, and a bunch of tips on how to avoid mistakes.
+
+The Images & Sounds are here and all the code for the whole series follows after the video below.
+http://www.newthinktank.com/wordpress/SpaceInvaderAssets.zip
+
+We will start, by finish up some items in our scripts.  Double click the SpaceShip script, so it opens in VS.
+So, now got to the SpaceShip script to see how we added sound, for a bullet shot.
+
+Next, we will highlight our Shield, in our Prefab folder, and then add component and select a box collider 2d.
+Box Collider 2d settings:  defaults are good.
+
+Next we will focus on making bullets for our spaceship and for the aliens.
+Double click the Bullet script to open in VS.  The notes will continue there.
+
+We are finished with Bullet.cs for now...
+
+Next, within unity, check to see if we have a tag for Shields... Nope...
+In prefab, choose Shield and go to the tab area and create a ne tab and name it Shield
+Then create a layer for sheild, user layer 12 = Sheild.
+Then select Sheild, in the dropdowns for Tag and Layer.
+
+Next, highlight Bullet in Prefab folder.
+Drag the ExplodedAlien image in the sprites folder(SpaceInvadersSprites_6), 
+into the Bullet script box, where it says 'Exploded Alien Image'
+
+Next verify that the Bullet script is in the SpaceShip: theBullet = Bullet
+Check SoundManager to see that it has a lists of sounds; 5 of them.
+Its good to occasionally verify that you scripts are set up, where they should be, and not missing.
+
+Next we will create an empty game object, in our heirachy, to put our shield fields in.
+Rename it to Shields
+Drag Sheild, from prefab into Sheilds, in our hierarchy
+Heighlight our Shield in heirarchy and drag the green sheild box, down to the bottom left,
+of our Scene screen, above the SpaceShip, and away from the left wall.
+
+|
+|  Sheild
+| 
+|
+| SpaceShip
+|_________________________________________
+
+After getting the Sheild '@', object in place, duplicate it 3 times, and as your dulicate them, 
+line them up side by side in a row, so they are touching, on each inner side.
+
+|
+|   @@@@  <----  4 Sheilds
+| 
+|
+| SpaceShip
+|_________________________________________
+
+After they are lined up, roughly, in the horizontal plane we can go in to one of the Shield blocks, and copy the Position Y field,
+and copy the value.
+Next, select all 4 portions of the shield in the Main Scene list, and change all the Position Y fields, to that value.
+Select all 4 Shields, duplicate them, drag the 4 duplicates so they touch the top of the original 4 Shields.
+Then drag one from each side of the top, and drag them, to the bottom of the, original shields.
+
+|	 @@   <----  2 duplicates sit on top of the original shields
+|   @@@@  <----  4 original Sheilds
+|   @  @  <----  2 duplicates sit on top of the original shields
+|
+|
+|
+| SpaceShip
+|_________________________________________
+
+Next, select all those shield components in the main scene, and duplicate them, then pull them over 3 more times:
+	
+|  	@@							@@								@@								 @@   <----  2 duplicates sit on top of the original shields
+|  @@@@						   @@@@							   @@@@								@@@@  <----  4 original Sheilds
+|  @  @						   @  @							   @  @								@  @  <----  2 duplicates sit on top of the original shields
+|
+|
+|
+| SpaceShip <-- down here
+|_______________________________________________________________________________________________________
+
+Save Scene!
+
+Next we will set up our AlienBullet script, so double click that to edit in VS;  the notes will continue on the scripts, as comments.
+
+After finishing the AlienBullet script return to Unity.
+Select AlienBullet in your Prefab folder, then drag the AlienButton script into the AlienBullet setting, at the bottom, below the add component button.
+
+Next, in the AlienBllet setting, drag the Exploding bullet which is named "SpaceInvadersSprites_7", in our sprites folder, into our AlienBullet script,
+and put it in the 'Exploted Ship Image' field.
+
