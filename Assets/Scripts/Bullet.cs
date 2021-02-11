@@ -64,8 +64,8 @@ public class Bullet : MonoBehaviour {
         }
 
         // T6 If Alien Bullet hits Shield destroy both them
-        // refer to the fields using its tag, 
-        if(col.tag == "Shield")
+        // refer to the fields using its tag, yes shield is spelled incorrectly
+        if(col.tag == "Sheild")
         {
             // destroy bullet
             Destroy(gameObject);

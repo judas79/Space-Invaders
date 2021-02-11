@@ -1,0 +1,121 @@
+In this part of my Video Game Tutorial we completely finish Space Invaders! Well create the Alien AI, Think About when it Makes Sense to Ignore Collisions, 
+Randomize AI Firing, Change Images, Hone AI Movement, Make Objects Appear, Randomize Actions, Animate Explosions, Utilize Sound Effects and use StartCoroutine, 
+SpriteRenderer, Yield and more.
+
+The Images & Sounds are here. All of the code used follows the video below.
+http://www.newthinktank.com/wordpress/SpaceInvaderAssets.zip
+
+First we will, is double click our Alien script, in Unity and launch the VS editor and go there to write code to our script.
+As alway, the notes will be written within the script itself, in the form of comments.
+
+Back in Unity, we will assign all of our Aliens, in our prefab folder, to our Alien tag as well as our Alien layer, in their drop downs, 1 alien at a time.
+Next, verify that the prefab 'Shield' has its tag and layer, set to Sheild.
+
+Next lets click Edit, Project Settings, Physics 2D, and make sure the Alien row does not intersect with the Sheild column.  Uncheck it if they intersect, 
+at the intersecting point.
+
+Next go back to out Alien.cs script in the VS editor and complete the script and note documentation.
+
+Next,back in the Unity game editor, we will assign all the things we completed in the script.
+
+First, we will assign a tag and a layer name for AlienBullet in our Prefab folder; the name of: AlienBullet
+add tag, then the + sign AlienBullet, in layers, add layer, user layer 13 AlienBullet
+Then choose AlienBullet in Prefab and select AlienBullet, from the tab and layers dropdowns.
+
+Next, Edit, Project Settings, Physics 2D, make the AlienBullet and the Alien to ignore eachother, by removing the check mark,
+where the two intersect.
+Also, make AlienBullet ignore the other AlienBullet in the physics 2D grid.
+
+Next we will set up all our Aliens, with components.  
+We will first add a RigidBox to all of our aliens one Alien at a time,
+by selecting the Alien in Prefab the Add Component, Physics 2d, RigidBody 2D
+Universal Settings for all Aliens for RigidBody 2D
+Mass = 0.0001
+Gravity Scale = 0
+Collision Detection = Constinuous
+Interpolate = Interpolate
+Freeze Rotation Z Checked
+
+Then we can add component, Physics 2D, Box Collider; add one for each alien
+leave the settings as they are.
+
+Next, we will put our Alien script in each of our Aliens, by dragging Alien from our scripts folder,
+down below our add Component button, and dropping them there for each alien.
+
+In the settings script area, for each Alien, drag the AlienBullet, from the Prefab section,
+and drop it in the Alien Bullet space, in the script part of the settings, area.
+
+Next, we will fill in the rest of the settings area, for each alien, in the prefab folder.
+
+Alien2 Alien(Script) settings:
+Start Image: SpaceInvadersSprite_1 (in sprites folder)
+Alt Image: SpaceInvadersSprite_2 (in sprites folder)
+Exploded Ship Image:  SpaceInvadersSprite_7 (in sprites folder)
+
+Alien3 Alien(Script) settings:
+Start Image: SpaceInvadersSprite_3 (in sprites folder)
+Alt Image: SpaceInvadersSprite_9 (in sprites folder)
+Exploded Ship Image:  SpaceInvadersSprite_7 (in sprites folder)
+
+Alien4 Alien(Script) settings:
+Start Image: SpaceInvadersSprite_4 (in sprites folder)
+Alt Image: SpaceInvadersSprite_10 (in sprites folder)
+Exploded Ship Image:  SpaceInvadersSprite_7 (in sprites folder)
+
+Alien5 Alien(Script) settings:
+Start Image: SpaceInvadersSprite_5 (in sprites folder)
+Alt Image: SpaceInvadersSprite_11 (in sprites folder)
+Exploded Ship Image:  SpaceInvadersSprite_7 (in sprites folder)
+
+Next, we will delete all the Aliens, and thier duplicates, from the Main Scene. 
+Only the Aliens get deleted.  Leave the Alien, now empty container, there.
+
+Next, drag Alien2, onto the Scene screen, where the first alien on the top left was.
+Alien2, will also now appear in the MainScene list, so drag Alien2, into the Aliens folder, in the MainScene list, section.
+Then drag 4 more Alien2, into the Alien folder in Main Scene, and drag them into place,
+one at a time, as you add them.  
+You can use the same value in Each aliens y Position settings, to line them up, in a straight row.
+The aliens will manifest themselves, on top of that first, draggrd over alien, 
+so it appear to be one, but there are actually two, stack on top of one another.
+
+You should now have 5 aliens, of the same color and number, placed side by side.
+_________________________________
+| @ @ @ @ @
+|
+|
+|
+|
+|
+
+Next do the same, adding, Alien3, then Alien4, and Alien5, and you should have this configuration:
+
+_________________________________
+| @ @ @ @ @
+| # # # # #
+| $ $ $ $ $
+| % % % % %
+|
+|
+
+Quick note, If all your aliens look lined up nice and straigt, but one of them drrops down a bit when you start the game,
+to test it, it could be that the Alien is set to close to the left wall.  Drag it to the right a little bit, and test play it again.
+Also, If a whole row of aliens, shows in the Scene window, but dissapeers, when you start the game, check that your,
+Start Alien and Alternative Alien settings, still have the dragged in sprites, in those fielsds, as well as the explosion sprite.
+
+Next go into your Alien.cs script and comment out this line:
+//SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienBuzz1);
+Instead of commenting out the line you can fix it like this:
+
+"I found the solution for anyone who is having problems with SoundManager in Aliens script. 
+
+> Edit > Project Settings > Script Execution Order
+
+From here hit the '+' button and then click SoundManager
+give SoundManager a negative value (-1) and hit Apply
+
+What is happening is that Alien Start() is being called before SoundManager Start() so SoundManager.Instance is null when it is first called in Alien.
+
+The above instructions insures that SoundManager script is run before Alien script"
+
+
+Then Select, all your wall, one at a time, and change the color from white to black.

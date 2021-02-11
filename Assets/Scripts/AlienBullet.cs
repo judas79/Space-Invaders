@@ -56,7 +56,7 @@ public class AlienBullet : MonoBehaviour {
 
         // T6 If Alien Bullet hits Shield destroy both AlienBullet and the section of the shield it hits.
         // refer to the fields using its tag, 
-        if (col.tag == "Shield")
+        if (col.tag == "Sheild")
         {
             // T6 destroy the alien bullet
             Destroy(gameObject);
